@@ -1,0 +1,91 @@
+vardi = {
+        "sfera" : ["sfer", "sfera", "svera", "sfeera", "lode", "lodes", "sphere", "spher", "sphe", "bumba", "bumbas", "lodite", "lodites", "sph"],
+        "trijsturis" : ["trijsturis", "trijstuuris", "trijstur", "trijstuur", "triangle", "3-sturis", "3sturis", "3-stuuris", "3stuuris", "3angle", "3-angle", "triangles", "3angle", "3angles", "3ang", "3str", "trissturis", "tristuris" ],
+        "kubs" : ["kubs", "cube", "kubiks", "kub", "kubi", "kubikiem", "kubiem", "kubikus", "kuba", "kubika", "kubu"]
+    }
+def meklesana(mainigais):
+    for i in vardi:
+        for u in vardi[i]:
+            if u == mainigais:
+                return i 
+def sfera():
+    radius = int(input("Ievadi sfēras rādiusu: "))
+    spv = 4 * 3.14 * radius * radius
+    v = 4 * 3.14 * radius * radius * radius / 3
+    print(f"Sfēras pilnas virsmas laukums ir {spv} bet tilpums ir {v}")
+    inputs()
+def kubs():
+    mala = int(input("Ievadi šķautnes, jeb malas garumu: "))
+    v = mala * mala * mala
+    spv = mala * mala * 6
+    print(f"Kuba pilnas virsmas laukums ir {spv} bet tilpums ir {v}")
+    inputs()
+def trijsturis():
+    h = int(input("Ievadi trijstūra augstumu: "))
+    a = int(input("Ievadi trijstūra malas garumu: "))
+    s = a * h / 2
+    print(f"Trijstūra laukums ir {s}")
+    inputs()
+def cikVardiTeikuma(teikums):
+    skaitlis = 0
+    for i in teikums:
+        if i == " ":
+            skaitlis += 1 
+    return skaitlis
+def vienkarsiBurti (teikums):
+    visiburti = []
+    istieBurti = []
+    a = 0
+    gatavais = ""
+    gatavais1 = ""
+    for burts in teikums:
+        visiburti.append(burts)
+    while a < len(visiburti):
+        if visiburti[a] == "Ā" or visiburti[a] == "ā":
+            istieBurti.append("a")
+        elif visiburti[a] == "Č" or visiburti[a] == "č":
+            istieBurti.append("c")
+        elif visiburti[a] == "ē" or visiburti[a] == "Ē":
+            istieBurti.append("e")
+        elif visiburti[a] == "Ģ" or visiburti[a] == "ģ":
+            istieBurti.append("g")
+        elif visiburti[a] == "Ī" or visiburti[a] == "ī":
+            istieBurti.append("i")
+        elif visiburti[a] == "Ķ" or visiburti[a] == "ķ":
+            istieBurti.append("k")
+        elif visiburti[a] == "Ļ" or visiburti[a] == "ļ":
+            istieBurti.append("l")
+        elif visiburti[a] == "Ņ" or visiburti[a] == "ņ":
+            istieBurti.append("n")
+        elif visiburti[a] == "Š" or visiburti[a] == "š":
+            istieBurti.append("s")
+        elif visiburti[a] == "Ū" or visiburti[a] == "ū":
+            istieBurti.append("u")
+        elif visiburti[a] == "Ž" or visiburti[a] == "ž":
+            istieBurti.append("z")
+        elif visiburti[a] == " " or visiburti[a] == "  ":
+            pass
+        else:
+            istieBurti.append(visiburti[a])
+        a += 1
+    for u in istieBurti:
+        gatavais += u
+    gatavais1 = gatavais.lower()
+    return gatavais1
+def inputs():
+    jamekle = ""
+    koDaris = input("\n  ")
+    if cikVardiTeikuma(koDaris) == 0:
+        jamekle = vienkarsiBurti(koDaris)
+        if meklesana(jamekle) == "sfera":
+            sfera()
+        elif meklesana(jamekle) == "trijsturis":
+            trijsturis()
+        elif meklesana(jamekle) == "kubs":
+            kubs()
+        else:
+            print(f"Formula priekš {koDaris} netika atrasta...")
+    elif cikVardiTeikuma(koDaris) == 1 or cikVardiTeikuma(koDaris) > 1:
+        print("Te būs cita funkcija ;)")
+        inputs()
+inputs()
